@@ -18,6 +18,11 @@ namespace ConsoleApp1
 
             for (int day = 1; day <= daysUntilChristmas; day++)
             {
+                if (day % 11 == 0)
+                {
+                    quantity += 2;
+                }
+
                 if (day % 2 == 0)
                 {
                     budget += ornamentSet * quantity;
@@ -50,13 +55,6 @@ namespace ConsoleApp1
                         christmasSpirit -= 30;
                     }
                 }
-
-                if (day % 11 == 0)
-                {
-                    quantity += 2;
-                }
-
-
             }
 
             Console.WriteLine($"Total cost: {budget}");
