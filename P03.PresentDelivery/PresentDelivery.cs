@@ -22,11 +22,47 @@ namespace P03.PresentDelivery
                 int numbersToJump = int.Parse(commandtoList[1]);
 
                 int indexAfterJump = WhereIsSanta(numbersToJump, lastSantaLocation, houses);
-                Console.WriteLine(indexAfterJump);
-                lastSantaLocation = indexAfterJump;
 
+                if (houses[indexAfterJump] > 2)
+                {
+                    houses[indexAfterJump] -= 2;
+                }
+                else if (houses[indexAfterJump] <= 2 && houses[indexAfterJump] != 0)
+                {
+                    houses[indexAfterJump] = 0;
+                }
+                else
+                {   
+                    Console.WriteLine($"House {indexAfterJump} will have a Merry Christmas.");
+                }
+                
+                lastSantaLocation = indexAfterJump;
                 command = Console.ReadLine();
             }
+
+            Console.WriteLine($"Santa's last position was {lastSantaLocation}.");
+            if (houses.Sum() == 0)
+            {
+                Console.WriteLine("Mission was successful.");
+            }
+            else
+            {
+                int housesFailed = HousesNotZero(houses);
+                Console.WriteLine($"Santa has failed {housesFailed} houses.");
+            }
+        }
+
+        private static int HousesNotZero(List<int> houses)
+        {
+            int notZero = 0;
+            for (int i = 0; i < houses.Count; i++)
+            {
+                if (houses[i] != 0)
+                {
+                    notZero++;
+                }
+            }
+            return notZero;
         }
 
         private static int WhereIsSanta(int numbersToJump, int lastSantaLocation, List<int> houses)
