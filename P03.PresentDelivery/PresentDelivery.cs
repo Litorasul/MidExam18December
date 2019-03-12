@@ -76,6 +76,10 @@ namespace P03.PresentDelivery
             else
             {
                 int fromTheStart = jump - houses.Count;
+                while (fromTheStart >= houses.Count)
+                {
+                    fromTheStart -= houses.Count;
+                }
                 return fromTheStart;
             }
         }
